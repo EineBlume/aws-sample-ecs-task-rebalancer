@@ -23,7 +23,7 @@ AWS-ECS 클러스터 인스턴스가 `Scale-Out`될때 작업 재배치 해주�
 `lambda deploy` 명령어를 통해 배포할 수 있습니다(실행하면 `AWS-Lambda` 함수를 만듬). 
 
 
-## ASG Notification Role
+## ASG Notification Policy
 ```
 {
     "Version": "2012-10-17",
@@ -41,7 +41,7 @@ AWS-ECS 클러스터 인스턴스가 `Scale-Out`될때 작업 재배치 해주�
 }
 ```
 
-## Lambda Execute Role
+## Lambda Execute Policy
 ```
 {
     "Version": "2012-10-17",
