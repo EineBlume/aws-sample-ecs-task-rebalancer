@@ -64,7 +64,6 @@ def _get_services(cluster_name):
     ]
 
 
-@raven_client.capture_exceptions
 def handler(event, context):
     logger.info(f'event: {event}')
 
