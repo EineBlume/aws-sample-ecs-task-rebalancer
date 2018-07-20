@@ -5,14 +5,14 @@ handler: service.handler
 description: aws-ecs task rebalancer.
 runtime: python3.6
 timeout: 180
-memory_size: 512
+memory_size: 128
 
 # S3 upload requires appropriate role with s3:PutObject permission
 # (ex. basic_s3_upload), a destination bucket, and the key prefix
 # bucket_name: 'example-bucket'
 # s3_key_prefix: 'path/to/file/'
 
-aws_access_key_id: 
+aws_access_key_id:
 aws_secret_access_key:
 role: ECS-LambdaExecuteRoleForTaskRebalance
 
