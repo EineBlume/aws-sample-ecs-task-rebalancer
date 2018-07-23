@@ -129,7 +129,9 @@ def handler(event, context):
     services = resp['services']
     for service in services:
         logger.info(f'Service: {service["serviceName"]}')
-
+        if service['desiredCount'] == 0:
+            logger.info(f'Skip: desiredCount of {service["serviceName"]} is 0')
+            continue
         deployments = service['deployments']
         if len(deployments) >= 2:
             logger.error(f'Now {service["serviceName"]} Deploying... Exit')
