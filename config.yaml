@@ -18,6 +18,9 @@ role: ECS-LambdaExecuteRoleForTaskRebalance
 
 dist_directory: dist
 
+environment_variables:
+  IGNORE_SERVICES: ${IGNORE_SERVICES}
+
 # Build options
 # build:
 #   # a comma delimited list of directories in your project root that contains source to package.
