@@ -2,6 +2,7 @@
 import base64
 import json
 import logging
+import os
 from time import sleep
 
 import boto3
@@ -19,6 +20,10 @@ ecs_client = session.client(service_name='ecs')
 asg_client = session.client('autoscaling')
 sns_client = session.client('sns')
 lambda_client = session.client('lambda')
+
+IGNORE_SERVICES = os.getenv('IGNORE_SERVICES', '').split(',')
+if IGNORE_SERVICES:
+    logger.info(f'Ignore services named {", ".join(IGNORE_SERVICES)}')
 
 
 def _get_cluster_name(ec2_instance_id):
@@ -128,8 +133,13 @@ def handler(event, context):
 
     services = resp['services']
     for service in services:
-        logger.info(f'Service: {service["serviceName"]}')
-
+        service_name = service["serviceName"]
+        logger.info(f'Service: {service_name}')
+        if service['desiredCount'] == 0:
+            logger.info(f'Skip: desiredCount of {service_name} is 0')
+            continue
+        if service_name in IGNORE_SERVICES:
+            logger.info(f'Skip: {service_name} in IGNORE_SERVICES')
         deployments = service['deployments']
         if len(deployments) >= 2:
             logger.error(f'Now {service["serviceName"]} Deploying... Exit')
@@ -143,4 +153,4 @@ def handler(event, context):
             forceNewDeployment=True,
         )
 
-        logger.info(f'Update Service {service["serviceName"]} forceNewDeployment...')
+        logger.info(f'Update Service {service_name} forceNewDeployment...')
