@@ -140,6 +140,7 @@ def handler(event, context):
             continue
         if service_name in IGNORE_SERVICES:
             logger.info(f'Skip: {service_name} in IGNORE_SERVICES')
+            continue
         deployments = service['deployments']
         if len(deployments) >= 2:
             logger.error(f'Now {service["serviceName"]} Deploying... Exit')
