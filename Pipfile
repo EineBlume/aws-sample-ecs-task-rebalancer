@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-python-lambda = "~=3.2.2"
+boto3 = "~=1.7.50"
 
 [dev-packages]
 
