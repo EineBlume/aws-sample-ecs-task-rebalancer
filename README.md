@@ -63,9 +63,9 @@ AWS-ECS 클러스터 인스턴스가 `Scale-Out`될때 작업 재배치 해주�
                 "ecs:DescribeContainerInstances",
                 "ecs:ListTasks",
                 "ecs:DescribeTasks",
-                "ecs:listServices",
+                "ecs:ListServices",
                 "ecs:DescribeServices",
-                "ecs:updateService"
+                "ecs:UpdateService"
             ],
             "Resource": "*"
         },
