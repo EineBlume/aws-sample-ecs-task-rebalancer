@@ -15,5 +15,5 @@ PyYAML==3.11
 requests==2.18.4
 s3transfer==0.1.13
 six==1.10.0
-urllib3==1.22
+urllib3==1.26.5
 websocket-client==0.46.0
